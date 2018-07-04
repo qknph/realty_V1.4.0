@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from home.models import *
 
@@ -28,3 +29,11 @@ def dept_list(request):
 
 def notice_list(request):
     return render(request, 'notice_list.html')
+
+
+# 删除房屋类型操作
+def house_type_delete(request):
+        cno = request.GET.get('cno', '')
+        cn = int(cno)
+        HouseType.objects.filter(type_id=cn).delete()
+        return HttpResponseRedirect('/staff/house_type_list.html')
