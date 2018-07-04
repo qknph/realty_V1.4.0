@@ -16,6 +16,8 @@ urlpatterns = [
     url(r'^query_house/',views.query_house),
     url(r'^query_house_type/',views.query_house_type),
     url(r'^query_dept/',views.query_dept),
+    url(r'^note_del/',views.note_del),
+    url(r'^query_note/',views.query_note)
 
 
 

@@ -28,12 +28,20 @@ def dept_list(request):
 
 
 def notice_list(request):
-    return render(request, 'notice_list.html')
+    note = NoticeInfo.objects.all()
+    return render(request, 'notice_list.html',{'note':note})
+
+
+def note_del(request):
+    dele = request.GET.get('dele','')
+    dele = int(dele)
+    NoticeInfo.objects.filter(notice_id=dele).delete()
+
+    return HttpResponseRedirect('/staff/notice_list.html')
 
 
 # 删除房屋类型操作
 def house_type_delete(request):
-    print "fangwu"
     cno = request.GET.get('cno', '')
     cn = int(cno)
     HouseType.objects.filter(type_id=cn).delete()
@@ -41,10 +49,8 @@ def house_type_delete(request):
 
 #删除部门信息操作
 def d_del_view(request):
-    print 'sdlkflkjls'
     #获取部门信息
-    dell = request.GET.get('dell','0')
-    print dell
+    dell = request.GET.get('dell','')
     dell = int(dell)
     DepartmentInfo.objects.filter(department_id= dell).delete()
     return HttpResponseRedirect('/staff/Dedept_list.html/')
@@ -72,25 +78,38 @@ def Ed_view(request):
 
         return HttpResponse('chaxunchenggong')
 
-
+# 查询房屋信息
 def query_house(request):
     houseinput = request.POST.get('houseInput','')
     queryType = request.POST.get('queryType','')
     if queryType == '1':
-        house = HouseType.objects.get(type_name=houseinput).houseinfo_set.all()
+        house = HouseType.objects.get(type_name__contains=houseinput).houseinfo_set.all()
         return render(request, 'house_list.html', {'houseinfo':house})
     elif queryType == '2':
-        house = HouseInfo.objects.filter(house_address=houseinput)
+        house = HouseInfo.objects.filter(house_address__contains=houseinput)
         return render(request,'house_list.html',{'houseinfo':house})
 
-
+# 房屋类型查询
 def query_house_type(request):
     housetypename = request.POST.get('houseTypeName','')
-    types = HouseType.objects.filter(type_name=housetypename)
+    types = HouseType.objects.filter(type_name__contains=housetypename)
     return render(request,'house_type_list.html',{'housetype':types})
 
-
+# 部门信息查询
 def query_dept(request):
     departmentname = request.POST.get('departmentName','')
-    dept = DepartmentInfo.objects.filter(department_name=departmentname)
+    dept = DepartmentInfo.objects.filter(department_name__contains=departmentname)
     return render(request,'dept_list.html',{'department':dept})
+
+# 公告信息查询
+def query_note(request):
+    querytype = request.POST.get('queryType','')
+    noticeinput = request.POST.get('noticeInput','')
+    if querytype == '1':
+        item = NoticeInfo.objects.filter(notice_item__contains=noticeinput)
+        return render(request,"notice_list.html",{'note':item})
+    elif querytype == '2':
+        con = NoticeInfo.objects.filter(notice_content__contains=noticeinput)
+        return render(request,'notice_list.html',{'note':con})
+
+    return None
