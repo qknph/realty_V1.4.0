@@ -78,4 +78,6 @@ def dept_add(request):
             return HttpResponse('添加失败')
 
 
+def role_add(request):
 
+    return render(request,'role_add.html')
