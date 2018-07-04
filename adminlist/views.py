@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
-from home.models import DepartmentInfo, UserInfo
+from home.models import DepartmentInfo, UserInfo, UserRole
 
 
 def emp_add(request):
@@ -77,7 +77,11 @@ def dept_add(request):
         else:
             return HttpResponse('添加失败')
 
-
-def role_add(request):
-
-    return render(request,'role_add.html')
+#
+# def role_add(request):
+#     if request.method == 'GET':
+#         return render(request,'role_add.html')
+#     else:
+#         role = request.POST.get('rolePower',None)
+#         try:
+#             role_name = UserRole.objects.get(role_name=role)
