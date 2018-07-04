@@ -13,7 +13,9 @@ urlpatterns = [
     url(r'^d_delete/',views.d_del_view),
     url(r'^E_del/',views.E_del_view),
     url(r'^Edit/',views.Ed_view),
-    url(r'^query_house/',views.query_house)
+    url(r'^query_house/',views.query_house),
+    url(r'^query_house_type/',views.query_house_type),
+    url(r'^query_dept/',views.query_dept),
 
 
 

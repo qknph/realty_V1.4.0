@@ -82,3 +82,15 @@ def query_house(request):
     elif queryType == '2':
         house = HouseInfo.objects.filter(house_address=houseinput)
         return render(request,'house_list.html',{'houseinfo':house})
+
+
+def query_house_type(request):
+    housetypename = request.POST.get('houseTypeName','')
+    types = HouseType.objects.filter(type_name=housetypename)
+    return render(request,'house_type_list.html',{'housetype':types})
+
+
+def query_dept(request):
+    departmentname = request.POST.get('departmentName','')
+    dept = DepartmentInfo.objects.filter(department_name=departmentname)
+    return render(request,'dept_list.html',{'department':dept})
