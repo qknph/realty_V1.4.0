@@ -12,7 +12,9 @@ def emp_list(request):
 # 房屋信息
 def house_list(request):
     houseinfo = HouseInfo.objects.all()
-    return render(request, 'house_list.html',{"houseinfo":houseinfo})
+    count = HouseInfo.objects.count()
+    print count
+    return render(request, 'house_list.html',{"houseinfo":houseinfo,'count':count})
 
 # 房屋类型
 def house_type_list(request):
@@ -59,7 +61,7 @@ def d_del_view(request):
 def E_del_view(request):
     cno = request.GET.get('cno', '')
     cn = int(cno)
-    HouseInfo.objects.filter(houseinfo__house_id= cn).delete()
+    HouseInfo.objects.filter(house_id= cn).delete()
     return HttpResponseRedirect('/staff/house_list.html/')
 
 
@@ -113,3 +115,7 @@ def query_note(request):
         return render(request,'notice_list.html',{'note':con})
 
     return None
+
+
+def note_add(request):
+    return HttpResponse('zanwu')
