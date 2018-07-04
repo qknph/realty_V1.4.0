@@ -7,7 +7,7 @@
 <body>
 
 
-  <form action="http://localhost:8080/crm/servlet/DepartmentQueryServlet" method="post">
+<form action="http://localhost:8080/crm/servlet/DepartmentQueryServlet" method="post">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	  <tbody><tr>
     <td height="30" background="/static/tab_05.gif"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -50,7 +50,7 @@
             </div></td>
             <td height="20" bgcolor="#FFFFFF" style="width: 10%;"><div align="center"><span class="STYLE1">{{ depart.department_name }}</span></div></td>
             <td height="20" bgcolor="#FFFFFF" style="width: 75%;"><div align="center"><span class="STYLE1">{{ depart.department_desc }}</span></div></td>
-			<td height="20" bgcolor="#FFFFFF" style="width: 10%;"><div align="center"><span class="STYLE4"><img src="/static/del.gif" width="16" height="16"><a href="http://127.0.0.1:8000/lefthome/D_delete/?dell={{ depart.department_id }}">删除</a></span></div></td>
+			<td height="20" bgcolor="#FFFFFF" style="width: 10%;"><div align="center"><span class="STYLE4"><img src="/static/del.gif" width="16" height="16"><a href="/staff/d_delete/?dell={{ depart.department_id }}">删除</a></span></div></td>
           </tr>
             {% endfor %}
 
