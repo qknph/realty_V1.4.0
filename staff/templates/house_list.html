@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-		<form action="http://localhost:8080/crm/servlet/HouseQueryServlet" method="post">
+		<form action="/staff/query_house/" method="post">
 
 
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -114,12 +114,12 @@
 											</td>
 											<td height="20" bgcolor="#FFFFFF" style="width: 10%;">
 												<div align="center">
-													<span class="STYLE1">{{ houseinf.type_id }}</span>
+													<span class="STYLE1">{{ houseinf.type.type_name }}</span>
 												</div>
 											</td>
 											<td height="20" bgcolor="#FFFFFF" style="width: 10%;">
 												<div align="center">
-													<span class="STYLE1">{{ houseinf.user_id }}</span>
+													<span class="STYLE1">{{ houseinf.user.user_name }}</span>
 												</div>
 											</td>
 											<td height="20" bgcolor="#FFFFFF" style="width: 20%;">
@@ -139,8 +139,8 @@
 											</td>
 											<td height="20" bgcolor="#FFFFFF" style="width: 20%;">
 												<div align="center">
-													<span class="STYLE4"> <img src="/static/edt.gif" width="16" height="16"> <a href="http://127.0.0.1:8000/lefthome/Edit/?cno={{ houseinf.house_id }}">编辑</a>&nbsp;
-														&nbsp; <img src="/static/del.gif" width="16" height="16"><a href="http://127.0.0.1:8000/lefthome/E_del/?cno={{ houseinf.house_id }}">删除</a>
+													<span class="STYLE4"> <img src="/static/edt.gif" width="16" height="16"> <a href="/staff/Edit/?cno={{ houseinf.house_id }}">编辑</a>&nbsp;
+														&nbsp; <img src="/static/del.gif" width="16" height="16"><a href="/staff/E_del/?cno={{ houseinf.house_id }}">删除</a>
 													</span>
 												</div>
 											</td>

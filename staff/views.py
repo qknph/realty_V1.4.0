@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from home.models import *
 
@@ -48,3 +48,37 @@ def d_del_view(request):
     dell = int(dell)
     DepartmentInfo.objects.filter(department_id= dell).delete()
     return HttpResponseRedirect('/staff/Dedept_list.html/')
+
+#删除房屋信息
+def E_del_view(request):
+    cno = request.GET.get('cno', '')
+    cn = int(cno)
+    HouseInfo.objects.filter(houseinfo__house_id= cn).delete()
+    return HttpResponseRedirect('/staff/house_list.html/')
+
+
+# 编辑房屋信息#
+def Ed_view(request):
+    if request.method == 'GET':
+        # 获取该房屋信息信息
+        cno = request.GET.get('cno', '')
+        cno = int(cno)
+        ed = HouseInfo.objects.filter(house_id=cno)
+        return render(request, 'house_edit.html', {'ed': ed})
+    else:
+        # 获取页面中内容
+        # input_ADDRESS = request.POST.get('input_ADDRESS','fffffffff')
+        # print input_ADDRESS
+
+        return HttpResponse('chaxunchenggong')
+
+
+def query_house(request):
+    houseinput = request.POST.get('houseInput','')
+    queryType = request.POST.get('queryType','')
+    if queryType == '1':
+        house = HouseType.objects.get(type_name=houseinput).houseinfo_set.all()
+        return render(request, 'house_list.html', {'houseinfo':house})
+    elif queryType == '2':
+        house = HouseInfo.objects.filter(house_address=houseinput)
+        return render(request,'house_list.html',{'houseinfo':house})
