@@ -166,7 +166,7 @@ class EmailInfo(models.Model):
         managed = False
         db_table = 'email_info'
 
-# 家庭地址
+# 房屋信息
 class HouseInfo(models.Model):
     house_id = models.AutoField(primary_key=True)
     type = models.ForeignKey('HouseType', models.DO_NOTHING, blank=True, null=True)
@@ -180,7 +180,7 @@ class HouseInfo(models.Model):
         managed = False
         db_table = 'house_info'
 
-# 家庭类型
+# 房屋类型
 class HouseType(models.Model):
     type_id = models.AutoField(primary_key=True)
     type_name = models.CharField(max_length=50, blank=True, null=True)

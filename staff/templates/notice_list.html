@@ -96,7 +96,7 @@ for(i=0;i<cs.length;i++){
 </script>
 <script type="text/javascript">
 	function add(){
-			window.location="http://localhost:8080/crm/servlet/NoticeAddServlet";
+			window.location="/staff/note_add/";
 		}
 
 </script>
@@ -104,9 +104,10 @@ for(i=0;i<cs.length;i++){
 
 	<body>
 
-	<form action="http://localhost:8080/crm/servlet/NoticeQueryServlet"  method="post">
+	<form action="/staff/query_note/"  method="post">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-			<tr>
+{#			头部#}
+            <tr>
 				<td height="30" background="/static/tab_05.gif">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
@@ -146,7 +147,7 @@ for(i=0;i<cs.length;i++){
 				</td>
 			</tr>
 
-
+{#            中间主题内容#}
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -208,48 +209,51 @@ for(i=0;i<cs.length;i++){
 									</tr>
 
 
-									<tr>
+									{% for n in note %}
+									    <tr>
 										<td height="20" bgcolor="#FFFFFF" style="width: 5%">
 											<div align="center" class="STYLE1">
 												<div align="center">
-													1
+													{{ n.notice_id }}
 												</div>
 											</div>
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 5%">
 											<div align="center">
-												<span class="STYLE1">孙悟空</span>
+												<span class="STYLE1">{{ n.user.user_name }}</span>
 											</div>
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 8%">
 											<div align="center">
-												<span class="STYLE1">最近要开会</span>
+												<span class="STYLE1">{{ n.notice_item }}</span>
 											</div>
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 40%">
 											<div align="center">
-												<span class="STYLE1">记得带钱</span>
+												<span class="STYLE1">{{ n.notice_content }}</span>
 											</div>
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 10%">
 											<div align="center">
-												<span class="STYLE1">2013-05-23 23:22:12.0</span>
+												<span class="STYLE1">{{ n.notice_time }}</span>
 											</div>
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 10%">
 											<div align="center">
-												<span class="STYLE1">2013-05-30 23:22:29.0</span>
+												<span class="STYLE1">{{ n.notice_endtime }}</span>
 											</div>
 										</td>
 										<td     height="20" bgcolor="#FFFFFF" style="width: 10%">
 											<div align="center">
 												<span class="STYLE4"><img src="/static/del.gif"
 														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/NoticeDeleteServlet?noticeId=3">删除</a>
+													href="/staff/note_del/?dele={{ n.notice_id }}">删除</a>
 												</span>
 											</div>
 										</td>
 									</tr>
+									{% endfor %}
+
 
 								</table>
 							</td>
@@ -262,6 +266,7 @@ for(i=0;i<cs.length;i++){
 				</td>
 			</tr>
 
+{#            页面底部#}
 			<tr>
 				<td height="35" background="/static/tab_19.gif">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
